@@ -3,7 +3,13 @@ package com.enp.chatterbox.api.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.enp.chatterbox.api.dto.UserDto;
+import com.enp.chatterbox.api.model.User;
+import com.enp.chatterbox.api.repository.UserRepository;
+
+@Service
 public class UserService {
 	
 	@Autowired
