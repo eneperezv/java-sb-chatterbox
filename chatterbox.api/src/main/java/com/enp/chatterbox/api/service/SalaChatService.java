@@ -1,5 +1,20 @@
 package com.enp.chatterbox.api.service;
 
+/*
+ * @(#)SalaChatService.java 1.0 10/11/2024
+ * 
+ * El código implementado en este formulario esta protegido
+ * bajo las leyes internacionales del Derecho de Autor, sin embargo
+ * se entrega bajo las condiciones de la General Public License (GNU GPLv3)
+ * descrita en https://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+/**
+ * @author eliezer.navarro
+ * @version 1.0
+ * @since 1.0
+ */
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +31,6 @@ public class SalaChatService {
 	@Autowired
     private SalaChatRepository salaChatRepository;
 	
-	//@Autowired
-	//private MensajeService mensajeService;
-	
 	public SalaChat crearSala(SalaChat sala) {
         return salaChatRepository.save(sala);
     }
@@ -32,7 +44,6 @@ public class SalaChatService {
     	salaChat.setId(salaChatDto.getId());
     	salaChat.setNombre(salaChatDto.getNombre());
     	salaChat.setDescripcion(salaChatDto.getDescripcion());
-    	//salaChat.setMensajes(getListaMensajeFromListaMensajeDto(salaChatDto.getMensajesDto()));
 		
 		return salaChat;
 	}
@@ -42,7 +53,6 @@ public class SalaChatService {
 		salaChatDto.setId(optional.get().getId());
     	salaChatDto.setNombre(optional.get().getNombre());
     	salaChatDto.setDescripcion(optional.get().getDescripcion());
-    	//salaChatDto.setMensajesDto(getListaMensajeDtoFromListaMensaje(optional.get().getMensajes()));
 		
 		return salaChatDto;
 	}
@@ -52,29 +62,8 @@ public class SalaChatService {
 		salaChatDto.setId(salaChat.getId());
     	salaChatDto.setNombre(salaChat.getNombre());
     	salaChatDto.setDescripcion(salaChat.getDescripcion());
-    	//salaChatDto.setMensajesDto(getListaMensajeDtoFromListaMensaje(salaChat.getMensajes()));
 		
 		return salaChatDto;
 	}
-	
-	/*public List<Mensaje> getListaMensajeFromListaMensajeDto(List<MensajeDto> listaMensajeDto){
-		List<Mensaje> listaMensaje = new ArrayList<Mensaje>();
-		
-		for(MensajeDto mensajeDto : listaMensajeDto){
-			listaMensaje.add(mensajeService.buildEntity(mensajeDto));
-		}
-		
-		return listaMensaje;
-	}
-	
-	public List<MensajeDto> getListaMensajeDtoFromListaMensaje(List<Mensaje> listaMensaje){
-		List<MensajeDto> listaMensajeDto = new ArrayList<MensajeDto>();
-		
-		for(Mensaje mensaje : listaMensaje){
-			listaMensajeDto.add(mensajeService.buildDtoFromMensaje(mensaje));
-		}
-		
-		return listaMensajeDto;
-	}*/
 	
 }

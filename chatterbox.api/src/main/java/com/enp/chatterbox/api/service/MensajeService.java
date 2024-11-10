@@ -1,9 +1,23 @@
 package com.enp.chatterbox.api.service;
 
+/*
+ * @(#)MensajeService.java 1.0 10/11/2024
+ * 
+ * El código implementado en este formulario esta protegido
+ * bajo las leyes internacionales del Derecho de Autor, sin embargo
+ * se entrega bajo las condiciones de la General Public License (GNU GPLv3)
+ * descrita en https://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+/**
+ * @author eliezer.navarro
+ * @version 1.0
+ * @since 1.0
+ */
+
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +33,6 @@ public class MensajeService {
 	
 	@Autowired
 	private UserService userService;
-	
-	//@Autowired
-	//@Lazy  // Indica que esta dependencia se crea solo cuando se necesite
-	//private SalaChatService salaChatService;
 
     public Mensaje enviarMensaje(Mensaje mensaje) {
         return mensajeRepository.save(mensaje);
