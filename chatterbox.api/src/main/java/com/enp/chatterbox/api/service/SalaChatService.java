@@ -21,6 +21,14 @@ public class SalaChatService {
 	
 	@Autowired
 	private MensajeService mensajeService;
+	
+	public SalaChat crearSala(SalaChat sala) {
+        return salaChatRepository.save(sala);
+    }
+
+    public List<SalaChat> listarSalas() {
+        return salaChatRepository.findAll();
+    }
     
     public SalaChat buildEntity(SalaChatDto salaChatDto) {
     	SalaChat salaChat = new SalaChat();
