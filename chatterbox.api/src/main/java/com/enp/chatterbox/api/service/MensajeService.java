@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.enp.chatterbox.api.dto.MensajeDto;
 import com.enp.chatterbox.api.dto.UserDto;
 import com.enp.chatterbox.api.model.Mensaje;
 import com.enp.chatterbox.api.model.SalaChat;
@@ -18,6 +19,12 @@ public class MensajeService {
 	
 	@Autowired
     private MensajeRepository mensajeRepository;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private SalaChatService salaChatService;
 
     public Mensaje enviarMensaje(Mensaje mensaje) {
         return mensajeRepository.save(mensaje);
@@ -27,61 +34,37 @@ public class MensajeService {
         return mensajeRepository.findBySala(sala);
     }
     
-    
-    
-    
-    
-    
-    
-    @Autowired
-	private UserRepository userRepository;
-	
-	public UserDto createUser(UserDto userDto) {
-		return buildDto(Optional.of(userRepository.save(buildEntity(userDto))));
-	}
-
-	public UserDto findById(Long id) {
-		return buildDto(userRepository.findById(id));
-	}
-	
-	public UserDto updateUser(UserDto userDto) {
-		return buildDto(Optional.of(userRepository.save(buildEntity(userDto))));
-	}
-	
-	public User buildEntity(UserDto userDto) {
-		User user = new User();
-		user.setId(userDto.getId());
-		user.setUsername(userDto.getUsername());
-		user.setPassword(userDto.getPassword());
-		user.setRole(userDto.getRole());
-		user.setName(userDto.getName());
-		user.setEmail(userDto.getEmail());
+    public Mensaje buildEntity(MensajeDto mensajeDto) {
+    	Mensaje mensaje = new Mensaje();
+    	mensaje.setId(mensajeDto.getId());
+    	mensaje.setContenido(mensajeDto.getContenido());
+    	mensaje.setFechaHora(mensajeDto.getFechaHora());
+    	mensaje.setUsuario(userService.buildEntity(mensajeDto.getUsuarioDto()));
+    	mensaje.setSala(salaChatService.buildEntity(mensajeDto.getSalaDto()));
 		
-		return user;
+		return mensaje;
 	}
 	
-	public UserDto buildDto(Optional<User> optional) {
-		UserDto userDto = new UserDto();
-		userDto.setId(optional.get().getId());
-		userDto.setUsername(optional.get().getUsername());
-		userDto.setPassword(optional.get().getPassword());
-		userDto.setRole(optional.get().getRole());
-		userDto.setName(optional.get().getName());
-		userDto.setEmail(optional.get().getEmail());
+	public MensajeDto buildDto(Optional<Mensaje> optional) {
+		MensajeDto mensajeDto = new MensajeDto();
+		mensajeDto.setId(optional.get().getId());
+		mensajeDto.setContenido(optional.get().getContenido());
+    	mensajeDto.setFechaHora(optional.get().getFechaHora());
+    	mensajeDto.setUsuarioDto(userService.buildDtoFromUser(optional.get().getUsuario()));
+    	mensajeDto.setSalaDto(salaChatService.buildDtoFromSalaChat(optional.get().getSala()));
 		
-		return userDto;
+		return mensajeDto;
 	}
 	
-	public UserDto buildDtoFromUser(User user) {
-		UserDto userDto = new UserDto();
-		userDto.setId(user.getId());
-		userDto.setUsername(user.getUsername());
-		userDto.setPassword(user.getPassword());
-		userDto.setRole(user.getRole());
-		userDto.setName(user.getName());
-		userDto.setEmail(user.getEmail());
+	public MensajeDto buildDtoFromMensaje(Mensaje mensaje) {
+		MensajeDto mensajeDto = new MensajeDto();
+		mensajeDto.setId(mensaje.getId());
+		mensajeDto.setContenido(mensaje.getContenido());
+    	mensajeDto.setFechaHora(mensaje.getFechaHora());
+    	mensajeDto.setUsuarioDto(userService.buildDtoFromUser(mensaje.getUsuario()));
+    	mensajeDto.setSalaDto(salaChatService.buildDtoFromSalaChat(mensaje.getSala()));
 		
-		return userDto;
+		return mensajeDto;
 	}
 
 }
