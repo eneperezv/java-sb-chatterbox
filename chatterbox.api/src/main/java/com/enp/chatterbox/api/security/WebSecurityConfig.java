@@ -56,50 +56,15 @@ public class WebSecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(registry -> {
-                    //registry.requestMatchers("/swagger-ui/**").permitAll();
-                    //registry.requestMatchers("/v3/api-docs/**").permitAll();
                     registry.requestMatchers(HttpMethod.POST, "/api/v1/chatterbox/auth").permitAll();
                     //USER
                     registry.requestMatchers(HttpMethod.GET,  "/api/v1/chatterbox/users/**").hasRole("USER");
                     registry.requestMatchers(HttpMethod.POST, "/api/v1/chatterbox/users/create").hasRole("USER");
                     registry.requestMatchers(HttpMethod.PUT,  "/api/v1/chatterbox/users/**").hasRole("USER");
-                    /*
-                    //BLAB
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/blabber/blabs/create").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/blabber/blabs/**").hasRole("USER");
-                    //LIKE
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/blabber/blabs/like").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/blabber/blabs/likes/**").hasRole("USER");
-                    //COMMENT
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/blabber/blabs/comment").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/blabber/blabs/comments/**").hasRole("USER");
-                    //FOLLOW
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/blabber/blabs/follows/get-follows-by-user/**").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/blabber/blabs/follows/get-followers-by-user/**").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/blabber/blabs/follows/create").hasRole("USER");
-                    */
-                    /*
-                    //HOTEL
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/reservite/hotel").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/reservite/hotel").hasRole("USER");
-                    //ROOM
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/reservite/room").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/reservite/room/by-number/**").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/reservite/room/by-hotel/**").hasRole("USER");
-                    //BOOKING
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/reservite/booking").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.GET , "/api/v1/reservite/booking").hasRole("USER");
-                    //DASHBOARD
-                    registry.requestMatchers(HttpMethod.GET , "/api/v1/reservite/dashboard").hasRole("USER");
-                    //NOTIFICATIONS
-                    registry.requestMatchers(HttpMethod.GET , "/api/v1/reservite/notification").hasRole("USER");
+                    //CHAT
+                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/chatterbox/chat/salas").hasRole("USER");
+                    registry.requestMatchers(HttpMethod.POST, "/api/v1/chatterbox/chat/salas").hasRole("USER");
                     
-                    
-                    
-                    registry.requestMatchers(HttpMethod.GET,  "/api/v1/taskflow/task/followup/**").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.POST, "/api/v1/taskflow/task/followup").hasRole("USER");
-                    registry.requestMatchers(HttpMethod.PUT,  "/api/v1/taskflow/task/followup").hasRole("USER");
-                    */
                     registry.anyRequest().authenticated();
                 })
                 .formLogin(login -> login

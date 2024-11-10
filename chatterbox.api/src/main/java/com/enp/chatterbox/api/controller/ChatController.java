@@ -1,11 +1,14 @@
 package com.enp.chatterbox.api.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +41,11 @@ public class ChatController {
     @PostMapping("/salas")
     public ResponseEntity<SalaChat> crearSala(@RequestBody SalaChat salaChat) {
         return ResponseEntity.ok(salaChatService.crearSala(salaChat));
+    }
+    
+    @GetMapping("/salas")
+    public ResponseEntity<List<SalaChat>> verTodasSalas(){
+    	return ResponseEntity.ok(salaChatService.listarSalas());
     }
 
 }

@@ -7,7 +7,7 @@ public class SalaChatDto {
 	private Long id;
     private String nombre;
     private String descripcion;
-    private List<MensajeDto> mensajesDto;
+    //private List<MensajeDto> mensajesDto;
     
 	public Long getId() {
 		return id;
@@ -33,18 +33,17 @@ public class SalaChatDto {
 		this.descripcion = descripcion;
 	}
 
-	public List<MensajeDto> getMensajesDto() {
+	/*public List<MensajeDto> getMensajesDto() {
 		return mensajesDto;
 	}
 
 	public void setMensajesDto(List<MensajeDto> mensajesDto) {
 		this.mensajesDto = mensajesDto;
-	}
+	}*/
 
 	@Override
 	public String toString() {
-		return "SalaChatDto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", mensajesDto="
-				+ mensajesDto + "]";
+		return "SalaChatDto [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + "]";
 	}
 
 }

@@ -8,7 +8,7 @@ public class MensajeDto {
     private String contenido;
     private LocalDateTime fechaHora;
     private UserDto usuarioDto;
-    private SalaChatDto salaDto;
+    private Long salaId;
     
 	public Long getId() {
 		return id;
@@ -42,18 +42,18 @@ public class MensajeDto {
 		this.usuarioDto = usuarioDto;
 	}
 
-	public SalaChatDto getSalaDto() {
-		return salaDto;
+	public Long getSalaId() {
+		return salaId;
 	}
 
-	public void setSalaDto(SalaChatDto salaDto) {
-		this.salaDto = salaDto;
+	public void setSalaId(Long salaId) {
+		this.salaId = salaId;
 	}
 
 	@Override
 	public String toString() {
 		return "MensajeDto [id=" + id + ", contenido=" + contenido + ", fechaHora=" + fechaHora + ", usuarioDto="
-				+ usuarioDto + ", salaDto=" + salaDto + "]";
+				+ usuarioDto + ", salaId=" + salaId + "]";
 	}
 
 }

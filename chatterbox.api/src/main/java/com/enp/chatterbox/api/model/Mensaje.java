@@ -2,11 +2,13 @@ package com.enp.chatterbox.api.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
+@Entity
 public class Mensaje {
 	
 	@Id
@@ -18,9 +20,7 @@ public class Mensaje {
 
     @ManyToOne
     private User usuario;
-
-    @ManyToOne
-    private SalaChat sala;
+    private Long salaId;
 
 	public Long getId() {
 		return id;
@@ -54,18 +54,18 @@ public class Mensaje {
 		this.usuario = usuario;
 	}
 
-	public SalaChat getSala() {
-		return sala;
+	public Long getSalaId() {
+		return salaId;
 	}
 
-	public void setSala(SalaChat sala) {
-		this.sala = sala;
+	public void setSalaId(Long salaId) {
+		this.salaId = salaId;
 	}
 
 	@Override
 	public String toString() {
 		return "Mensaje [id=" + id + ", contenido=" + contenido + ", fechaHora=" + fechaHora + ", usuario=" + usuario
-				+ ", sala=" + sala + "]";
+				+ ", salaId=" + salaId + "]";
 	}
 
 }
